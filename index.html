@@ -9,7 +9,7 @@
 body {
   margin: 0;
   height: 100vh;
-background: url("askim.jpg") center/cover no-repeat;
+  background: url("askim.jpej") center/cover no-repeat;
   overflow: hidden;
   font-family: Arial, sans-serif;
   text-align: center;
@@ -61,8 +61,8 @@ button {
 
 <body>
 
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<audio id="music" loop>
+  <source src="bizim sarkimiz.mp3" type="audio/mpeg">
 </audio>
 
 <div class="overlay">
@@ -76,13 +76,13 @@ button {
 </div>
 
 <script>
-const names = ["Ali ❤️", "Aşkım 💕"];
+const names = ["Ali ❤️", "Beyza ❤️"];
 
 setInterval(() => {
   const span = document.createElement("div");
   span.className = "name";
   span.style.left = Math.random() * 100 + "vw";
-  span.innerText = names[Math.floor(Math.random()*names.length)];
+  span.innerText = names[Math.floor(Math.random() * names.length)];
   document.body.appendChild(span);
   setTimeout(() => span.remove(), 6000);
 }, 500);
@@ -94,12 +94,17 @@ document.getElementById("no").addEventListener("mouseover", () => {
 });
 
 document.getElementById("yes").addEventListener("click", () => {
+  const music = document.getElementById("music");
+  music.play(); // iPhone için garanti başlatma
+
   if (navigator.vibrate) navigator.vibrate([200,100,200]);
+
   document.body.innerHTML = `
     <div class="overlay">
       <h1 style="font-size:40px">
         CANIM SEVGİLİM ❤️<br>
-        Hadi gel seni çok özledim 💕
+        Ali & Beyza 💕<br><br>
+        Hadi gel seni çok özledim
       </h1>
     </div>`;
 });

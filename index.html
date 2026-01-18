@@ -1,54 +1,109 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ Sana Bir Mesajım Var ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            color: white;
-        }
-        .card {
-            background: rgba(255,255,255,0.15);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        h1 {
-            font-size: 2.2em;
-        }
-        p {
-            font-size: 1.2em;
-            margin-top: 15px;
-        }
-        .heart {
-            font-size: 3em;
-            animation: beat 1s infinite;
-        }
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aşkım 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1517841905240-472988babdf9") center/cover no-repeat;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 { font-size: 28px; margin-bottom: 20px; }
+
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4081;
+  color: white;
+}
+
+#no {
+  position: absolute;
+  background: #444;
+  color: white;
+}
+
+.name {
+  position: absolute;
+  font-size: 18px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-100vh); }
+}
+</style>
 </head>
+
 <body>
-    <div class="card">
-        <div class="heart">❤️</div>
-        <h1>Canım Aşkım</h1>
-        <p>
-            Bu sayfa sana özel hazırlandı.<br>
-            Gülüşün dünyamı güzelleştiriyor.<br>
-            İyi ki varsın 💕
-        </p>
-    </div>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay">
+  <h1>
+    Aşkım ben seni çok seviyorum 💕<br>
+    Sen de beni seviyorsan EVET’e bas
+  </h1>
+
+  <button id="yes">EVET 💖</button>
+  <button id="no">HAYIR 😅</button>
+</div>
+
+<script>
+const names = ["Ali ❤️", "Aşkım 💕"];
+
+setInterval(() => {
+  const span = document.createElement("div");
+  span.className = "name";
+  span.style.left = Math.random() * 100 + "vw";
+  span.innerText = names[Math.floor(Math.random()*names.length)];
+  document.body.appendChild(span);
+  setTimeout(() => span.remove(), 6000);
+}, 500);
+
+document.getElementById("no").addEventListener("mouseover", () => {
+  const btn = document.getElementById("no");
+  btn.style.left = Math.random() * 80 + "vw";
+  btn.style.top = Math.random() * 80 + "vh";
+});
+
+document.getElementById("yes").addEventListener("click", () => {
+  if (navigator.vibrate) navigator.vibrate([200,100,200]);
+  document.body.innerHTML = `
+    <div class="overlay">
+      <h1 style="font-size:40px">
+        CANIM SEVGİLİM ❤️<br>
+        Hadi gel seni çok özledim 💕
+      </h1>
+    </div>`;
+});
+</script>
+
 </body>
 </html>
